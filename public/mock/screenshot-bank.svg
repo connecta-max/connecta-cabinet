@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="320" height="220">
+  <rect width="320" height="220" rx="14" fill="#101425"/>
+  <rect x="16" y="16" width="288" height="36" rx="8" fill="#1b2036"/>
+  <text x="30" y="39" font-family="Arial, sans-serif" font-size="13" fill="#9aa0ac">Т-Банк · История операций</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="16" y="64" width="288" height="52" rx="10" fill="#1b2036"/>
+    <text x="30" y="86" font-size="13" fill="#f2f3f7" font-weight="bold">Списание · Подписка Connecta</text>
+    <text x="30" y="104" font-size="12" fill="#9aa0ac">Сегодня, 09:14</text>
+    <text x="280" y="95" font-size="14" fill="#ef4444" text-anchor="end" font-weight="bold">-1 990 ₽</text>
+
+    <rect x="16" y="124" width="288" height="52" rx="10" fill="#1b2036"/>
+    <text x="30" y="146" font-size="13" fill="#f2f3f7" font-weight="bold">Списание · Подписка Connecta</text>
+    <text x="30" y="164" font-size="12" fill="#9aa0ac">Сегодня, 09:14</text>
+    <text x="280" y="155" font-size="14" fill="#ef4444" text-anchor="end" font-weight="bold">-1 990 ₽</text>
+
+    <text x="30" y="204" font-size="11" fill="#6366f1">Два одинаковых списания за одну секунду</text>
+  </g>
+</svg>

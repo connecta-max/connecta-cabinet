@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" width="320" height="220">
+  <rect width="320" height="220" rx="14" fill="#1a1010"/>
+  <rect x="16" y="16" width="288" height="30" rx="6" fill="#2a1414"/>
+  <text x="30" y="36" font-family="Arial, sans-serif" font-size="12" fill="#f59e0b">connecta.io/export/report</text>
+  <rect x="16" y="58" width="288" height="130" rx="10" fill="#241414"/>
+  <text x="32" y="90" font-family="'Courier New', monospace" font-size="13" fill="#ef4444" font-weight="bold">500 Internal Server Error</text>
+  <text x="32" y="112" font-family="'Courier New', monospace" font-size="11" fill="#c9a0a0">Traceback (most recent call last):</text>
+  <text x="32" y="130" font-family="'Courier New', monospace" font-size="11" fill="#c9a0a0">  File "export.py", line 84</text>
+  <text x="32" y="148" font-family="'Courier New', monospace" font-size="11" fill="#c9a0a0">TimeoutError: report &gt; 10000 rows</text>
+  <text x="32" y="172" font-family="Arial, sans-serif" font-size="11" fill="#9aa0ac">Request ID: 7f2a-91cd-44e0</text>
+</svg>

@@ -1,0 +1,239 @@
+{
+  "nav": {
+    "tickets": "Тикеты",
+    "employees": "Сотрудники",
+    "penalties": "Штрафы",
+    "myPenalties": "Мои штрафы",
+    "clients": "Клиенты",
+    "settings": "Настройки"
+  },
+  "settingsNav": {
+    "channels": "Каналы",
+    "sla": "SLA и штрафы",
+    "templates": "Шаблоны ответов",
+    "interface": "Интерфейс"
+  },
+  "common": {
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "add": "Добавить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "back": "Назад",
+    "close": "Закрыть",
+    "zoomIn": "Увеличить",
+    "zoomOut": "Уменьшить",
+    "resetZoom": "Сбросить масштаб",
+    "search": "Поиск",
+    "all": "Все",
+    "yes": "Да",
+    "no": "Нет",
+    "noResults": "Ничего не найдено",
+    "actions": "Действия",
+    "confirmDelete": "Удалить безвозвратно?",
+    "confirm": "Подтвердить",
+    "showPassword": "Показать пароль",
+    "hidePassword": "Скрыть пароль",
+    "pinColumn": "Закрепить столбец",
+    "unpinColumn": "Открепить столбец",
+    "rowsPerPage": "Показывать по:"
+  },
+  "login": {
+    "title": "Вход в Connecta",
+    "emailLabel": "Email или логин",
+    "passwordLabel": "Пароль",
+    "submit": "Войти",
+    "error": "Неверный email или пароль"
+  },
+  "header": {
+    "logout": "Выйти",
+    "theme": "Тема",
+    "language": "Язык",
+    "menu": "Меню",
+    "profile": "Профиль"
+  },
+  "personInfo": {
+    "title": "Профиль",
+    "role": "Роль",
+    "roleAdmin": "Администратор",
+    "roleSupport": "Поддержка",
+    "openEmployeeCard": "Открыть карточку сотрудника →",
+    "openClientCard": "Открыть карточку клиента →"
+  },
+  "notifications": {
+    "title": "Уведомления",
+    "markAllRead": "Прочитать все",
+    "justNow": "Только что",
+    "minutesAgo": "{n} мин назад",
+    "hoursAgo": "{n} ч назад",
+    "daysAgo": "{n} дн назад"
+  },
+  "ticketStatus": {
+    "new": "Новое",
+    "in_progress": "В работе",
+    "closed": "Закрыто"
+  },
+  "clientType": {
+    "free": "Бесплатный",
+    "paid": "Платный",
+    "vip": "VIP"
+  },
+  "employeeStatus": {
+    "active": "Активен",
+    "inactive": "Неактивен"
+  },
+  "tickets": {
+    "title": "Тикеты",
+    "columnId": "ID",
+    "columnClient": "Клиент",
+    "columnStatus": "Статус",
+    "columnType": "Тип",
+    "columnAssignee": "Сотрудник",
+    "columnTags": "Теги",
+    "columnUpdated": "Обновлено",
+    "columnSla": "SLA",
+    "filterStatus": "Статус",
+    "filterAssignee": "Сотрудник",
+    "filterType": "Тип клиента",
+    "filterTag": "Тег",
+    "unassigned": "Не назначен",
+    "takeTicket": "Взять в работу",
+    "slaBreached": "Просрочен",
+    "slaOk": "В норме"
+  },
+  "ticketCard": {
+    "backToList": "К списку тикетов",
+    "chatTab": "Переписка",
+    "notesTab": "Внутренние заметки",
+    "notePlaceholder": "Заметка для коллег, клиент её не увидит…",
+    "addNote": "Заметка",
+    "noteTag": "Заметка",
+    "attach": "Прикрепить файл",
+    "noNoteRights": "Нет прав на внутренние заметки",
+    "messagePlaceholder": "Введите ответ клиенту…",
+    "send": "Отправить",
+    "insertTemplate": "Вставить шаблон",
+    "chooseTemplate": "Выберите шаблон",
+    "status": "Статус",
+    "assignee": "Назначен",
+    "clientType": "Тип клиента",
+    "tags": "Теги",
+    "addTag": "+ тег",
+    "csat": "Оценка клиента",
+    "noCsat": "Клиент ещё не оценил обращение",
+    "issuePenalty": "Выписать штраф",
+    "attachment": "Вложение",
+    "client": "Клиент",
+    "you": "Вы",
+    "recordVoice": "Записать голосовое",
+    "recording": "Запись...",
+    "stopRecording": "Отправить",
+    "voiceMessage": "Голосовое сообщение",
+    "voiceMessagePending": "Голосовое, {duration}"
+  },
+  "penaltyForm": {
+    "title": "Выписать штраф",
+    "employee": "Сотрудник",
+    "presets": "Готовые причины",
+    "presetLate": "Нарушение SLA",
+    "presetRude": "Некорректный ответ клиенту",
+    "presetMistake": "Ошибка в решении вопроса",
+    "presetCustom": "Другое",
+    "amount": "Сумма, ₽",
+    "reason": "Причина / комментарий",
+    "reasonRequired": "Комментарий обязателен для произвольной суммы",
+    "submit": "Выписать",
+    "relatedTicket": "Тикет"
+  },
+  "employees": {
+    "title": "Сотрудники",
+    "columnName": "ФИО",
+    "columnLogin": "Логин",
+    "columnStatus": "Статус",
+    "columnActiveTickets": "Тикетов в работе",
+    "addEmployee": "Добавить сотрудника",
+    "deactivate": "Деактивировать",
+    "activate": "Активировать",
+    "confirmDelete": "Удалить сотрудника «{name}»? Это действие необратимо."
+  },
+  "employeeCard": {
+    "backToList": "К списку сотрудников",
+    "rights": "Права доступа",
+    "canReply": "Отвечает пользователям",
+    "canLeaveNotes": "Оставляет внутренние заметки",
+    "penaltyHistory": "История штрафов",
+    "noPenalties": "Штрафов ещё не было",
+    "issuePenalty": "Выписать штраф"
+  },
+  "newEmployee": {
+    "title": "Новый сотрудник",
+    "fullName": "ФИО",
+    "login": "Логин",
+    "email": "Email",
+    "submit": "Добавить"
+  },
+  "penalties": {
+    "title": "Штрафы по компании",
+    "myTitle": "Мои штрафы",
+    "columnDate": "Дата",
+    "columnEmployee": "Сотрудник",
+    "columnAmount": "Сумма",
+    "columnReason": "Причина",
+    "columnIssuedBy": "Кем выписан",
+    "columnTicket": "Тикет",
+    "filterEmployee": "Сотрудник",
+    "filterPeriod": "Период",
+    "automatic": "Автоматически",
+    "periodWeek": "7 дней",
+    "periodMonth": "30 дней",
+    "periodAll": "Всё время"
+  },
+  "clients": {
+    "title": "Клиенты",
+    "columnName": "ФИО",
+    "columnEmail": "Email",
+    "columnPhone": "Телефон",
+    "columnType": "Тип",
+    "columnTickets": "Обращений"
+  },
+  "clientCard": {
+    "backToList": "К списку клиентов",
+    "info": "Данные клиента",
+    "id": "ID",
+    "type": "Тип клиента",
+    "history": "История обращений"
+  },
+  "settingsChannels": {
+    "title": "Каналы связи",
+    "telegramTitle": "Telegram-бот",
+    "telegramToken": "Токен бота",
+    "telegramStatus": "Статус подключения",
+    "connected": "Подключён",
+    "disconnected": "Не подключён",
+    "save": "Сохранить токен",
+    "widgetTitle": "Веб-виджет",
+    "widgetHint": "Вставьте этот код перед закрывающим тегом body на сайте",
+    "copy": "Скопировать",
+    "copied": "Скопировано"
+  },
+  "settingsSla": {
+    "title": "SLA и штрафы",
+    "responseTime": "Срок первого ответа",
+    "minutes": "мин",
+    "defaultPenalty": "Штраф по умолчанию за нарушение SLA, ₽",
+    "autoPenalty": "Автоматически штрафовать за нарушение SLA"
+  },
+  "settingsTemplates": {
+    "title": "Шаблоны ответов",
+    "addTemplate": "Добавить шаблон",
+    "nameLabel": "Название",
+    "contentLabel": "Текст ответа"
+  },
+  "settingsInterface": {
+    "title": "Интерфейс",
+    "defaultTheme": "Тема по умолчанию",
+    "light": "Светлая",
+    "dark": "Тёмная",
+    "defaultLanguage": "Язык по умолчанию"
+  }
+}

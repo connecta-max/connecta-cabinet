@@ -1,0 +1,239 @@
+{
+  "nav": {
+    "tickets": "Tickets",
+    "employees": "Employees",
+    "penalties": "Penalties",
+    "myPenalties": "My penalties",
+    "clients": "Clients",
+    "settings": "Settings"
+  },
+  "settingsNav": {
+    "channels": "Channels",
+    "sla": "SLA & Penalties",
+    "templates": "Reply Templates",
+    "interface": "Interface"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "close": "Close",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "resetZoom": "Reset zoom",
+    "search": "Search",
+    "all": "All",
+    "yes": "Yes",
+    "no": "No",
+    "noResults": "Nothing found",
+    "actions": "Actions",
+    "confirmDelete": "Delete permanently?",
+    "confirm": "Confirm",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "pinColumn": "Pin column",
+    "unpinColumn": "Unpin column",
+    "rowsPerPage": "Show per page:"
+  },
+  "login": {
+    "title": "Sign in to Connecta",
+    "emailLabel": "Email or login",
+    "passwordLabel": "Password",
+    "submit": "Sign in",
+    "error": "Invalid email or password"
+  },
+  "header": {
+    "logout": "Log out",
+    "theme": "Theme",
+    "language": "Language",
+    "menu": "Menu",
+    "profile": "Profile"
+  },
+  "personInfo": {
+    "title": "Profile",
+    "role": "Role",
+    "roleAdmin": "Admin",
+    "roleSupport": "Support",
+    "openEmployeeCard": "Open employee card →",
+    "openClientCard": "Open client card →"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all read",
+    "justNow": "Just now",
+    "minutesAgo": "{n} min ago",
+    "hoursAgo": "{n} h ago",
+    "daysAgo": "{n} d ago"
+  },
+  "ticketStatus": {
+    "new": "New",
+    "in_progress": "In progress",
+    "closed": "Closed"
+  },
+  "clientType": {
+    "free": "Free",
+    "paid": "Paid",
+    "vip": "VIP"
+  },
+  "employeeStatus": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "tickets": {
+    "title": "Tickets",
+    "columnId": "ID",
+    "columnClient": "Client",
+    "columnStatus": "Status",
+    "columnType": "Type",
+    "columnAssignee": "Assignee",
+    "columnTags": "Tags",
+    "columnUpdated": "Updated",
+    "columnSla": "SLA",
+    "filterStatus": "Status",
+    "filterAssignee": "Assignee",
+    "filterType": "Client type",
+    "filterTag": "Tag",
+    "unassigned": "Unassigned",
+    "takeTicket": "Take ticket",
+    "slaBreached": "Breached",
+    "slaOk": "On track"
+  },
+  "ticketCard": {
+    "backToList": "Back to tickets",
+    "chatTab": "Conversation",
+    "notesTab": "Internal notes",
+    "notePlaceholder": "Note for colleagues, the client won't see it…",
+    "addNote": "Note",
+    "noteTag": "Note",
+    "attach": "Attach file",
+    "noNoteRights": "No rights to leave internal notes",
+    "messagePlaceholder": "Type a reply to the client…",
+    "send": "Send",
+    "insertTemplate": "Insert template",
+    "chooseTemplate": "Choose a template",
+    "status": "Status",
+    "assignee": "Assignee",
+    "clientType": "Client type",
+    "tags": "Tags",
+    "addTag": "+ tag",
+    "csat": "Customer rating",
+    "noCsat": "The client hasn't rated this ticket yet",
+    "issuePenalty": "Issue penalty",
+    "attachment": "Attachment",
+    "client": "Client",
+    "you": "You",
+    "recordVoice": "Record voice message",
+    "recording": "Recording...",
+    "stopRecording": "Send",
+    "voiceMessage": "Voice message",
+    "voiceMessagePending": "Voice, {duration}"
+  },
+  "penaltyForm": {
+    "title": "Issue a penalty",
+    "employee": "Employee",
+    "presets": "Preset reasons",
+    "presetLate": "SLA violation",
+    "presetRude": "Inappropriate reply to a client",
+    "presetMistake": "Mistake resolving the issue",
+    "presetCustom": "Other",
+    "amount": "Amount, $",
+    "reason": "Reason / comment",
+    "reasonRequired": "A comment is required for a custom amount",
+    "submit": "Issue",
+    "relatedTicket": "Ticket"
+  },
+  "employees": {
+    "title": "Employees",
+    "columnName": "Full name",
+    "columnLogin": "Login",
+    "columnStatus": "Status",
+    "columnActiveTickets": "Open tickets",
+    "addEmployee": "Add employee",
+    "deactivate": "Deactivate",
+    "activate": "Activate",
+    "confirmDelete": "Delete employee \"{name}\"? This action cannot be undone."
+  },
+  "employeeCard": {
+    "backToList": "Back to employees",
+    "rights": "Access rights",
+    "canReply": "Can reply to customers",
+    "canLeaveNotes": "Can leave internal notes",
+    "penaltyHistory": "Penalty history",
+    "noPenalties": "No penalties yet",
+    "issuePenalty": "Issue penalty"
+  },
+  "newEmployee": {
+    "title": "New employee",
+    "fullName": "Full name",
+    "login": "Login",
+    "email": "Email",
+    "submit": "Add"
+  },
+  "penalties": {
+    "title": "Company-wide penalties",
+    "myTitle": "My penalties",
+    "columnDate": "Date",
+    "columnEmployee": "Employee",
+    "columnAmount": "Amount",
+    "columnReason": "Reason",
+    "columnIssuedBy": "Issued by",
+    "columnTicket": "Ticket",
+    "filterEmployee": "Employee",
+    "filterPeriod": "Period",
+    "automatic": "Automatic",
+    "periodWeek": "7 days",
+    "periodMonth": "30 days",
+    "periodAll": "All time"
+  },
+  "clients": {
+    "title": "Clients",
+    "columnName": "Full name",
+    "columnEmail": "Email",
+    "columnPhone": "Phone",
+    "columnType": "Type",
+    "columnTickets": "Tickets"
+  },
+  "clientCard": {
+    "backToList": "Back to clients",
+    "info": "Client details",
+    "id": "ID",
+    "type": "Client type",
+    "history": "Ticket history"
+  },
+  "settingsChannels": {
+    "title": "Communication channels",
+    "telegramTitle": "Telegram bot",
+    "telegramToken": "Bot token",
+    "telegramStatus": "Connection status",
+    "connected": "Connected",
+    "disconnected": "Not connected",
+    "save": "Save token",
+    "widgetTitle": "Web widget",
+    "widgetHint": "Paste this snippet before the closing body tag on your site",
+    "copy": "Copy",
+    "copied": "Copied"
+  },
+  "settingsSla": {
+    "title": "SLA & Penalties",
+    "responseTime": "First response deadline",
+    "minutes": "min",
+    "defaultPenalty": "Default penalty for SLA violation, $",
+    "autoPenalty": "Automatically penalize SLA violations"
+  },
+  "settingsTemplates": {
+    "title": "Reply templates",
+    "addTemplate": "Add template",
+    "nameLabel": "Name",
+    "contentLabel": "Reply text"
+  },
+  "settingsInterface": {
+    "title": "Interface",
+    "defaultTheme": "Default theme",
+    "light": "Light",
+    "dark": "Dark",
+    "defaultLanguage": "Default language"
+  }
+}
