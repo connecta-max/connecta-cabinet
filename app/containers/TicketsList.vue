@@ -120,16 +120,18 @@ function formatDate(iso: string) {
 }
 
 /*
- * The VIP indicator is an independent pseudo-element pinned to the row's own left
- * edge, not a box-shadow on the first cell. A pinned column can be reordered to be
- * first and already uses box-shadow for its own frozen-edge divider — sharing that
- * property would make one silently overwrite the other depending on pin state.
+ * The VIP indicator is an independent pseudo-element on the row's first cell, not a
+ * box-shadow (a pinned column already uses box-shadow for its frozen-edge divider,
+ * and sharing that property would make one silently overwrite the other depending on
+ * pin state) and not a pseudo-element on the <tr> itself (browsers give generated
+ * content on table-rows special anonymous-box handling, which was inserting a phantom
+ * column and misaligning every header from the header row onward).
  */
-:deep(.tickets-list__row--vip) {
+:deep(.tickets-list__row--vip > .data-table__td:first-child) {
   position: relative;
 }
 
-:deep(.tickets-list__row--vip)::before {
+:deep(.tickets-list__row--vip > .data-table__td:first-child)::before {
   content: '';
   position: absolute;
   left: 0;

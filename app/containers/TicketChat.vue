@@ -35,7 +35,7 @@
                   <img :src="attachment.url" :alt="attachment.name" class="ticket-chat__image" />
                 </button>
                 <div v-else-if="attachment.kind === 'voice'" class="ticket-chat__voice">
-                  <button type="button" class="ticket-chat__voice-play" @click="togglePlay(attachment.id)">
+                  <button type="button" class="ticket-chat__voice-play" @click="togglePlay(attachment)">
                     <Pause v-if="playingId === attachment.id" :size="14" />
                     <Play v-else :size="14" />
                   </button>
@@ -82,11 +82,11 @@
         <span class="ticket-chat__recording-dot" />
         <span class="ticket-chat__recording-label">{{ t('ticketCard.recording') }} {{ formatDuration(recordingSeconds) }}</span>
         <div class="ticket-chat__recording-actions">
-          <button type="button" class="ticket-chat__icon-btn" :title="t('common.cancel')" @click="cancelRecording">
-            <X :size="16" />
-          </button>
+          <BaseButton type="button" variant="secondary" size="sm" @click="cancelRecording">
+            <X :size="14" />{{ t('common.cancel') }}
+          </BaseButton>
           <BaseButton type="button" size="sm" @click="stopRecording">
-            <Square :size="12" />{{ t('ticketCard.stopRecording') }}
+            <Send :size="14" />{{ t('ticketCard.stopRecording') }}
           </BaseButton>
         </div>
       </div>
@@ -128,7 +128,7 @@
 </template>
 
 <script setup lang="ts">
-import { Download, Mic, Paperclip, Pause, Play, Send, Square, StickyNote, X } from '@lucide/vue'
+import { Download, Mic, Paperclip, Pause, Play, Send, StickyNote, X } from '@lucide/vue'
 import type { MessageAttachment, TicketMessage, TicketNote } from '~/types'
 
 const props = defineProps<{ ticketId: number }>()
@@ -229,6 +229,7 @@ function cancelRecording() {
 
 onBeforeUnmount(() => {
   if (recordingInterval) clearInterval(recordingInterval)
+  stopActiveAudio()
 })
 
 function onSend() {
@@ -263,9 +264,73 @@ function openLightbox(url: string | undefined) {
   if (url) lightboxUrl.value = url
 }
 
+// Voice messages have no real recorded audio in this prototype, so playback
+// synthesizes an audible tone for the message's own duration via the Web Audio
+// API — enough to confirm the play/pause controls actually produce sound,
+// without requiring a backend or a bundled audio asset.
 const playingId = ref<number | null>(null)
-function togglePlay(id: number) {
-  playingId.value = playingId.value === id ? null : id
+let audioCtx: AudioContext | null = null
+let activeAudio: { oscillator: OscillatorNode; lfo: OscillatorNode; gain: GainNode; timeoutId: number } | null = null
+
+function stopActiveAudio() {
+  if (activeAudio && audioCtx) {
+    const { oscillator, lfo, gain, timeoutId } = activeAudio
+    window.clearTimeout(timeoutId)
+    const now = audioCtx.currentTime
+    gain.gain.cancelScheduledValues(now)
+    gain.gain.setValueAtTime(gain.gain.value, now)
+    gain.gain.linearRampToValueAtTime(0, now + 0.05)
+    oscillator.stop(now + 0.06)
+    lfo.stop(now + 0.06)
+    activeAudio = null
+  }
+  playingId.value = null
+}
+
+function togglePlay(attachment: MessageAttachment) {
+  if (playingId.value === attachment.id) {
+    stopActiveAudio()
+    return
+  }
+  stopActiveAudio()
+  if (!audioCtx) audioCtx = new AudioContext()
+  const ctx = audioCtx
+  if (ctx.state === 'suspended') ctx.resume()
+
+  const oscillator = ctx.createOscillator()
+  oscillator.type = 'sine'
+  oscillator.frequency.value = 330
+
+  const lfo = ctx.createOscillator()
+  lfo.frequency.value = 4.5
+  const lfoGain = ctx.createGain()
+  lfoGain.gain.value = 6
+  lfo.connect(lfoGain)
+  lfoGain.connect(oscillator.frequency)
+
+  const gain = ctx.createGain()
+  gain.gain.value = 0
+  oscillator.connect(gain)
+  gain.connect(ctx.destination)
+
+  const duration = Math.max(0.5, attachment.durationSec ?? 3)
+  const now = ctx.currentTime
+  gain.gain.linearRampToValueAtTime(0.08, now + 0.05)
+  gain.gain.setValueAtTime(0.08, Math.max(now + 0.05, now + duration - 0.1))
+  gain.gain.linearRampToValueAtTime(0, now + duration)
+
+  oscillator.start(now)
+  lfo.start(now)
+  oscillator.stop(now + duration)
+  lfo.stop(now + duration)
+
+  const timeoutId = window.setTimeout(() => {
+    if (playingId.value === attachment.id) playingId.value = null
+    activeAudio = null
+  }, duration * 1000)
+
+  activeAudio = { oscillator, lfo, gain, timeoutId }
+  playingId.value = attachment.id
 }
 
 function waveBars(id: number) {

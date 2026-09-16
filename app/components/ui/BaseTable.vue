@@ -2,6 +2,9 @@
   <div class="data-table">
     <div class="data-table__scroll">
       <table class="data-table__table" :style="{ minWidth: `${totalWidth}px` }">
+        <colgroup>
+          <col v-for="col in orderedColumns" :key="col.key" :style="{ width: `${col.width}px` }" />
+        </colgroup>
         <thead>
           <tr>
             <th

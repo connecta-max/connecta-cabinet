@@ -158,12 +158,16 @@
   },
   "employeeCard": {
     "backToList": "Back to employees",
+    "role": "Role",
     "rights": "Access rights",
     "canReply": "Can reply to customers",
     "canLeaveNotes": "Can leave internal notes",
     "penaltyHistory": "Penalty history",
     "noPenalties": "No penalties yet",
-    "issuePenalty": "Issue penalty"
+    "issuePenalty": "Issue penalty",
+    "confirmDemoteTitle": "Remove admin rights?",
+    "confirmDemoteMessage": "You're about to remove admin rights from your own account. Some actions may become unavailable until another admin restores your role.",
+    "confirmDemoteAction": "Remove rights"
   },
   "newEmployee": {
     "title": "New employee",

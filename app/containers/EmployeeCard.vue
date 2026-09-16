@@ -12,10 +12,15 @@
           </div>
         </div>
 
+        <template v-if="isAdmin">
+          <h3 class="employee-card__section-title">{{ t('employeeCard.role') }}</h3>
+          <BaseSelect v-model="role" class="employee-card__role" :options="roleOptions" @update:model-value="onRoleChange" />
+        </template>
+
         <h3 class="employee-card__section-title">{{ t('employeeCard.rights') }}</h3>
         <div class="employee-card__rights">
-          <BaseCheckbox v-model="canReply" :label="t('employeeCard.canReply')" @update:model-value="onRightsChange" />
-          <BaseCheckbox v-model="canLeaveNotes" :label="t('employeeCard.canLeaveNotes')" @update:model-value="onRightsChange" />
+          <BaseCheckbox v-model="canReply" :label="t('employeeCard.canReply')" :disabled="!isAdmin" @update:model-value="onRightsChange" />
+          <BaseCheckbox v-model="canLeaveNotes" :label="t('employeeCard.canLeaveNotes')" :disabled="!isAdmin" @update:model-value="onRightsChange" />
         </div>
 
         <BaseButton v-if="canIssuePenalties" variant="danger" @click="penaltyModalOpen = true">{{ t('employeeCard.issuePenalty') }}</BaseButton>
@@ -40,15 +45,27 @@
     </div>
 
     <PenaltyFormModal v-model="penaltyModalOpen" :employee-id="employee.id" />
+
+    <ConfirmModal
+      v-model="demoteModalOpen"
+      :title="t('employeeCard.confirmDemoteTitle')"
+      :message="t('employeeCard.confirmDemoteMessage')"
+      :confirm-label="t('employeeCard.confirmDemoteAction')"
+      @confirm="applyRoleChange('support')"
+      @update:model-value="onDemoteModalClose"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import type { EmployeeRole } from '~/types'
+
 const props = defineProps<{ employeeId: number }>()
 
 const { t, locale } = useI18n()
-const { getEmployee, updateRights } = useEmployees()
-const { canIssuePenalties } = usePermissions()
+const { getEmployee, updateRights, updateRole } = useEmployees()
+const { canIssuePenalties, isAdmin } = usePermissions()
+const { currentEmployeeId } = useAuth()
 const { penaltiesFor } = usePenalties()
 
 const employee = computed(() => getEmployee(props.employeeId))
@@ -56,10 +73,36 @@ const penalties = penaltiesFor(props.employeeId)
 
 const canReply = ref(employee.value?.canReply ?? false)
 const canLeaveNotes = ref(employee.value?.canLeaveNotes ?? false)
+const role = ref(employee.value?.role ?? 'support')
 const penaltyModalOpen = ref(false)
+const demoteModalOpen = ref(false)
+
+const roleOptions = computed(() => [
+  { value: 'admin', label: t('personInfo.roleAdmin') },
+  { value: 'support', label: t('personInfo.roleSupport') }
+])
 
 function onRightsChange() {
   updateRights(props.employeeId, { canReply: canReply.value, canLeaveNotes: canLeaveNotes.value })
+}
+
+function onRoleChange(value: string) {
+  const isSelf = props.employeeId === currentEmployeeId.value
+  if (isSelf && value === 'support') {
+    demoteModalOpen.value = true
+    return
+  }
+  applyRoleChange(value as EmployeeRole)
+}
+
+function applyRoleChange(value: EmployeeRole) {
+  role.value = value
+  updateRole(props.employeeId, value)
+}
+
+function onDemoteModalClose(open: boolean) {
+  // Cancelled without confirming: snap the select back to the employee's actual role.
+  if (!open && employee.value) role.value = employee.value.role
 }
 
 function formatDate(iso: string) {

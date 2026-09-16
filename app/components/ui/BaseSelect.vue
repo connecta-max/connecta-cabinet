@@ -7,24 +7,38 @@
         <ChevronDown :size="16" class="base-select__chevron" :class="{ 'base-select__chevron--open': open }" />
       </button>
       <div v-if="open" class="base-select__panel" :class="{ 'base-select__panel--up': openUp }">
-        <button
-          v-for="option in options"
-          :key="option.value"
-          type="button"
-          class="base-select__option"
-          :class="{ 'base-select__option--selected': option.value === modelValue }"
-          @click="select(option.value)"
-        >
-          {{ option.label }}
-          <Check v-if="option.value === modelValue" :size="15" />
-        </button>
+        <div v-if="searchable" class="base-select__search">
+          <Search :size="14" class="base-select__search-icon" />
+          <input
+            ref="searchInputRef"
+            v-model="query"
+            type="text"
+            class="base-select__search-input"
+            :placeholder="t('common.search')"
+            @keydown.stop
+          />
+        </div>
+        <div class="base-select__options">
+          <button
+            v-for="option in filteredOptions"
+            :key="option.value"
+            type="button"
+            class="base-select__option"
+            :class="{ 'base-select__option--selected': option.value === modelValue }"
+            @click="select(option.value)"
+          >
+            {{ option.label }}
+            <Check v-if="option.value === modelValue" :size="15" />
+          </button>
+          <p v-if="filteredOptions.length === 0" class="base-select__empty">{{ t('common.noResults') }}</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Check, ChevronDown } from '@lucide/vue'
+import { Check, ChevronDown, Search } from '@lucide/vue'
 
 const props = defineProps<{
   modelValue: string
@@ -34,9 +48,23 @@ const props = defineProps<{
 
 const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 
+const { t } = useI18n()
+
+const SEARCH_THRESHOLD = 8
+
 const open = ref(false)
 const openUp = ref(false)
+const query = ref('')
 const rootEl = ref<HTMLElement | null>(null)
+const searchInputRef = ref<HTMLInputElement | null>(null)
+
+const searchable = computed(() => props.options.length > SEARCH_THRESHOLD)
+
+const filteredOptions = computed(() => {
+  if (!searchable.value || !query.value.trim()) return props.options
+  const q = query.value.trim().toLowerCase()
+  return props.options.filter((option) => option.label.toLowerCase().includes(q))
+})
 
 const selectedLabel = computed(() => props.options.find((option) => option.value === props.modelValue)?.label ?? '')
 
@@ -49,10 +77,14 @@ function toggleOpen() {
   if (rect) {
     const spaceBelow = window.innerHeight - rect.bottom
     const spaceAbove = rect.top
-    const panelEstimatedHeight = Math.min(260, props.options.length * 38 + 8)
+    const panelEstimatedHeight = Math.min(260, props.options.length * 38 + 8) + (searchable.value ? 44 : 0)
     openUp.value = spaceBelow < panelEstimatedHeight && spaceAbove > spaceBelow
   }
+  query.value = ''
   open.value = true
+  if (searchable.value) {
+    nextTick(() => searchInputRef.value?.focus())
+  }
 }
 
 function select(value: string) {
@@ -125,11 +157,6 @@ useClickOutside(rootEl, () => (open.value = false))
   left: 0;
   right: 0;
   min-width: 160px;
-}
-
-.base-select__panel--up {
-  top: auto;
-  bottom: calc(100% + 6px);
   padding: 4px;
   border-radius: 10px;
   border: 1px solid var(--color-border);
@@ -137,8 +164,44 @@ useClickOutside(rootEl, () => (open.value = false))
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
+  max-height: 300px;
+}
+
+.base-select__panel--up {
+  top: auto;
+  bottom: calc(100% + 6px);
+}
+
+.base-select__search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.base-select__search-icon {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.base-select__search-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--color-text);
+}
+
+.base-select__options {
+  display: flex;
+  flex-direction: column;
   gap: 2px;
-  max-height: 260px;
   overflow-y: auto;
 }
 
@@ -157,6 +220,7 @@ useClickOutside(rootEl, () => (open.value = false))
   font-family: inherit;
   text-align: left;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .base-select__option:hover {
@@ -168,5 +232,13 @@ useClickOutside(rootEl, () => (open.value = false))
   background: var(--color-accent-bg);
   color: var(--color-accent);
   font-weight: 500;
+}
+
+.base-select__empty {
+  margin: 0;
+  padding: 12px 10px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
 }
 </style>

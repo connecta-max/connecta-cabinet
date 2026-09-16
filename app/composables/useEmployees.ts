@@ -88,5 +88,10 @@ export function useEmployees() {
     if (employee) Object.assign(employee, rights)
   }
 
-  return { employees, getEmployee, addEmployee, toggleActive, updateRights, removeEmployee }
+  function updateRole(id: number, role: Employee['role']) {
+    const employee = getEmployee(id)
+    if (employee) employee.role = role
+  }
+
+  return { employees, getEmployee, addEmployee, toggleActive, updateRights, updateRole, removeEmployee }
 }

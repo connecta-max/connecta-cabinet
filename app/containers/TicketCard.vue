@@ -1,6 +1,6 @@
 <template>
   <div v-if="ticket" class="ticket-card">
-    <BackLink to="/tickets" :label="t('ticketCard.backToList')" />
+    <Breadcrumbs :items="breadcrumbItems" />
 
     <div class="ticket-card__layout">
       <BaseCard class="ticket-card__main">
@@ -43,6 +43,14 @@ const { getClient } = useClients()
 
 const ticket = computed(() => getTicket(props.ticketId))
 const client = computed(() => (ticket.value ? getClient(ticket.value.clientId) : undefined))
+
+const { canViewClients } = usePermissions()
+
+const breadcrumbItems = computed(() => [
+  { label: t('nav.tickets'), to: '/tickets' },
+  ...(client.value ? [{ label: client.value.fullName, to: canViewClients.value ? `/clients/${client.value.id}` : undefined }] : []),
+  { label: `#${props.ticketId}` }
+])
 
 const activeTab = ref<'chat' | 'notes'>('chat')
 </script>
